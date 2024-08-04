@@ -5,6 +5,7 @@ import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +15,13 @@ import java.util.Optional;
  * 해당 클래스 위에서 cmd+shift+t를 누르는 것
  */
 
+/*
+jpql을 사용할 때는 @Transactional 이 있어야 한다.
+데이터를 저장하고 변경하는 등의 작업할 때는 이 어노테이션이 필수임.
+회원가입할 때만 사용하므로 join 메서드에만 적용해도 된다.
+*/
 //@Service
+@Transactional
 public class MemberService {
 
     // 비즈니스 로직을 만드려면 일단 리포지토리가 필요함.
@@ -27,7 +34,6 @@ public class MemberService {
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
-
 
     // 회원가입, 반환값은 그 사람의 아이디 값
     public Long join(Member member){

@@ -1,8 +1,20 @@
 package hello.hellospring.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Member {
 
+    /*
+    DB에서 알아서 값을 넣어주는 것을 IDENTITY 전략이라고 한다.
+    @Id는 PK를 의미한다.
+     */
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
 
     public Long getId() {

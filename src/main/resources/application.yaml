@@ -1,26 +1,11 @@
 #spring.application.name=hello-spring
 spring:
-
-#  h2:
-#    console:
-#      enabled: true
-#
-#  datasource:
-#    url: jdbc:h2:mem:testdb
-#    driver-class-name: org.h2.Driver
-#    username: doro
-#    password:
-#
-#  jpa:
-#    database-platform: org.hibernate.dialect.H2Dialect
-#    hibernate:
-#      ddl-auto: create-drop # SessionFactory? ??? ? Drop, Create, Alter ??? ? Drop
-#    properties:
-#      hibernate:
-#        # console?? query? ?? ?? ??? ??
-#        format_sql: true
-#        show_sql: true
-#
-#logging:
-#  level:
-#    me.doromoro: DEBUG
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+  jpa:
+    show-sql: true
+    hibernate:
+      # 자동으로 테이블을 만들어주는 기능을 끔
+      ddl-auto: none

@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 ## 이슈
-- task: 내용()
+- task: 내용
 
 ## 상세 내용
 - [ ] todo
