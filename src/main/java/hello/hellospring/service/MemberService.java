@@ -45,13 +45,10 @@ public class MemberService {
 //        result.ifPresent(m -> {
 //            throw new IllegalStateException("already use name");
 //        });
-        
-        //코드 정리
-        // 이렇게 로직이 쭉 나오는 경우에는 메서드로 분리해주는 것이 좋다.
-        vallidateDuplicateMember(member);
 
-        memberRepository.save(member);
-        return member.getId();
+            vallidateDuplicateMember(member);
+            memberRepository.save(member);
+            return member.getId();
     }
 
     // cmd+opt+m 키로 refactor(extract method)
