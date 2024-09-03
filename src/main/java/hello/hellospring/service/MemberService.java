@@ -45,13 +45,24 @@ public class MemberService {
 //        result.ifPresent(m -> {
 //            throw new IllegalStateException("already use name");
 //        });
-        
+
+        // 메서드 호출 시간을 알아보기 위한 준비
+        Long start = System.currentTimeMillis();
+
+        try {
+            vallidateDuplicateMember(member);
+
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+            Long finish = System.currentTimeMillis();
+            Long timeMs = finish - start;
+            System.out.println("join = "+timeMs+"ms");
+        }
+
         //코드 정리
         // 이렇게 로직이 쭉 나오는 경우에는 메서드로 분리해주는 것이 좋다.
-        vallidateDuplicateMember(member);
 
-        memberRepository.save(member);
-        return member.getId();
     }
 
     // cmd+opt+m 키로 refactor(extract method)
@@ -75,7 +86,15 @@ public class MemberService {
      */
 
     public List<Member> findMembers() {
-        return memberRepository.findAll();
+        long start = System.currentTimeMillis();
+        try {
+            return memberRepository.findAll();
+        }
+        finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("findMembers = "+timeMs+"ms");
+        }
     }
 
     public Optional<Member> findOne(Long memberId){
